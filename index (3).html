@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ease & Aura — AI Capsule Wardrobe</title>
+  <meta name="description" content="Your personalized Amazon capsule wardrobe, built by AI. Answer 6 questions. Get a curated wardrobe delivered to your inbox every week." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory:      #F8F4EF;
+      --warm:       #F0EBE3;
+      --sand:       #E5DDD3;
+      --taupe:      #C4B5A5;
+      --mink:       #9A8878;
+      --charcoal:   #3A3530;
+      --gold:       #C9A96E;
+      --gold-light: #E8D4A8;
+      --sage:       #A8B5A0;
+      --text:       #3A3530;
+      --text-soft:  #7A6A5A;
+      --text-mute:  #9A8878;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ivory);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(248,244,239,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--sand);
+      padding: 0 3rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--charcoal);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .nav-logo em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .nav-tagline {
+      font-size: 0.52rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-top: 3px;
+    }
+
+    .nav-cta {
+      background: var(--charcoal);
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #EDE7DE 0%, #E8E0D5 35%, #EBE4DB 70%, #E5DDD3 100%);
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-orb-1 {
+      width: 500px; height: 500px;
+      top: -100px; left: -150px;
+      background: radial-gradient(circle, rgba(201,169,110,0.12) 0%, transparent 70%);
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      bottom: -80px; right: -100px;
+      background: radial-gradient(circle, rgba(168,181,160,0.15) 0%, transparent 70%);
+      animation: drift 10s ease-in-out infinite alternate-reverse;
+    }
+
+    .hero-orb-3 {
+      width: 250px; height: 250px;
+      top: 40%; left: 60%;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(20px, -20px) scale(1.05); }
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 100px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero-badge span { color: var(--gold); }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--text-soft);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text-soft);
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.85;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      animation: fadeUp 0.8s ease 0.4s both;
+    }
+
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,169,110,0.3);
+    }
+
+    .hero-note {
+      font-size: 0.65rem;
+      color: var(--text-mute);
+      letter-spacing: 0.12em;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--charcoal);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    h2 em { font-style: italic; color: var(--text-soft); }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      background: var(--warm);
+      border-top: 1px solid var(--sand);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .how-card {
+      background: var(--ivory);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .how-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .how-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .how-title {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .how-desc {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* ── WHAT YOU GET ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: var(--warm);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 1.75rem;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover { transform: translateY(-4px); }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-desc {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* ── CAPSULE PREVIEW ── */
+    .preview {
+      background: linear-gradient(135deg, #EDE7DE, #E5DDD3);
+      border-top: 1px solid var(--sand);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .preview-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .preview-inner { grid-template-columns: 1fr; gap: 2rem; }
+      nav { padding: 0 1.5rem; }
+      .trust-bar { gap: 1.5rem; }
+    }
+
+    .preview-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .preview-item {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 3px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s;
+    }
+
+    .preview-item:hover { transform: translateX(4px); }
+
+    .preview-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .preview-item-name {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      flex: 1;
+    }
+
+    .preview-item-tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      background: rgba(201,169,110,0.15);
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+    }
+
+    .preview-locked {
+      background: var(--sand);
+      border-radius: 2px;
+      width: 70px;
+      height: 10px;
+      opacity: 0.5;
+    }
+
+    /* ── PRICING ── */
+    .pricing-card {
+      max-width: 460px;
+      margin: 3rem auto 0;
+      background: var(--warm);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .price-note {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .price-features li span { color: var(--gold); margin-top: 2px; }
+
+    .price-divider {
+      height: 1px;
+      background: var(--sand);
+      margin: 1.5rem 0;
+    }
+
+    .no-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--text-mute);
+      font-style: italic;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--charcoal);
+      color: var(--ivory);
+    }
+
+    .about h2 { color: var(--ivory); }
+    .about h2 em { color: var(--gold-light); }
+
+    .about-text {
+      font-size: 0.9rem;
+      color: rgba(248,244,239,0.75);
+      line-height: 1.9;
+      max-width: 580px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .preview-inner { grid-template-columns: 1fr; }
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248,244,239,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #2A2520;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo em { color: var(--gold); font-style: italic; }
+
+    .footer-tagline {
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(248,244,239,0.35);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.68rem;
+      color: rgba(248,244,239,0.4);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-affiliate {
+      font-size: 0.6rem;
+      color: rgba(248,244,239,0.25);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── DIVIDER ── */
+    .ornament {
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      EASE <em>&</em> AURA
+      <div class="nav-tagline">AI Capsule Wardrobe</div>
+    </a>
+    <a href="#build" class="nav-cta">Build My Capsule</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span>✦</span> AI-Curated · Amazon-Sourced · Yours to Keep <span>✦</span>
+      </div>
+      <h1>
+        Your wardrobe,<br /><em>built for you.</em>
+      </h1>
+      <p class="hero-sub">
+        Answer 6 questions about your lifestyle, coloring, and style. AI builds your personalized Amazon capsule wardrobe — every piece chosen for you. New drops in your inbox every week.
+      </p>
+      <div class="hero-actions">
+        <a href="#build" class="btn-primary">Build My Capsule — Free</a>
+        <span class="hero-note">Takes 2 minutes &nbsp;·&nbsp; Unlock for $9.99 &nbsp;·&nbsp; No subscription. Ever.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <span class="trust-item">✦ No Subscriptions</span>
+    <span class="trust-item">✦ No Surprise Charges</span>
+    <span class="trust-item">✦ One-Time $9.99</span>
+    <span class="trust-item">✦ Amazon Prime Eligible</span>
+    <span class="trust-item">✦ Yours Forever</span>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="container">
+      <div style="text-align:center; max-width: 540px; margin: 0 auto;" class="reveal">
+        <span class="section-label">How It Works</span>
+        <h2>Simple.<br /><em>Personal. Yours.</em></h2>
+        <p style="font-size:0.88rem; color:var(--text-soft); line-height:1.8; margin-top:0.75rem;">
+          No stylist appointments. No scrolling for hours. Just a 2-minute quiz and a capsule built around your actual life.
+        </p>
+      </div>
+      <div class="how-grid">
+        <div class="how-card reveal">
+          <div class="how-num">01</div>
+          <div class="how-title">Answer 6 Questions</div>
+          <div class="how-desc">Your lifestyle, aesthetic, natural coloring, fit preference, occasions, and budget. Nothing invasive — just what you actually need.</div>
+        </div>
+        <div class="how-card reveal">
+          <div class="how-num">02</div>
+          <div class="how-title">AI Builds Your Capsule</div>
+          <div class="how-desc">Not a generic list. A personalized wardrobe curated for your coloring, your lifestyle, and your budget — built in real time.</div>
+        </div>
+        <div class="how-card reveal">
+          <div class="how-num">03</div>
+          <div class="how-title">Unlock for $9.99</div>
+          <div class="how-desc">See every Amazon link, outfit formula, and styling tip. One-time payment. Yours to keep and reference forever.</div>
+        </div>
+        <div class="how-card reveal">
+          <div class="how-num">04</div>
+          <div class="how-title">Weekly Drops in Your Inbox</div>
+          <div class="how-desc">Fresh Amazon finds curated to your style — delivered every week. New pieces, new themes, new seasons. Always relevant, always you.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPSULE PREVIEW -->
+  <section class="preview">
+    <div class="container">
+      <div class="preview-inner">
+        <div class="reveal">
+          <span class="section-label">What You'll Receive</span>
+          <h2>A wardrobe that<br /><em>actually works.</em></h2>
+          <p style="font-size:0.85rem; color:var(--text-soft); line-height:1.85; margin: 1rem 0 1.5rem;">
+            Every capsule includes 10–12 curated pieces, an outfit formula that shows you exactly how to combine them, and direct Amazon links at your budget. Built specifically for your style profile — not a template.
+          </p>
+          <a href="#build" class="btn-primary">Start My Style Quiz →</a>
+        </div>
+        <div class="preview-items reveal">
+          <div style="font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--text-mute); margin-bottom:0.75rem;">
+            Sample Capsule Preview
+          </div>
+          <div class="preview-item">
+            <div class="preview-dot"></div>
+            <span class="preview-item-name">Tailored Ivory Blazer</span>
+            <span class="preview-item-tag">Anchor</span>
+          </div>
+          <div class="preview-item">
+            <div class="preview-dot"></div>
+            <span class="preview-item-name">Wide-Leg Linen Trousers</span>
+            <span class="preview-item-tag">Foundation</span>
+          </div>
+          <div class="preview-item">
+            <div class="preview-dot"></div>
+            <span class="preview-item-name">Satin Slip Midi Dress</span>
+            <span class="preview-item-tag">Statement</span>
+          </div>
+          <div class="preview-item">
+            <div class="preview-dot"></div>
+            <span class="preview-item-name">Pointed Leather Loafers</span>
+            <span class="preview-item-tag">Footwear</span>
+          </div>
+          <div class="preview-item">
+            <div class="preview-dot"></div>
+            <span class="preview-item-name">Structured Neutral Tote</span>
+            <span class="preview-item-tag">Accessory</span>
+          </div>
+          <div style="padding: 0.6rem 1rem; display:flex; align-items:center; gap:0.75rem; opacity:0.5;">
+            <div class="preview-dot" style="background:var(--taupe)"></div>
+            <div class="preview-locked"></div>
+            <span style="font-size:0.65rem; color:var(--text-mute); font-style:italic;">+ 7 more pieces — unlock to reveal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="container">
+      <div style="text-align:center; max-width:500px; margin:0 auto 1rem;" class="reveal">
+        <span class="section-label">What's Inside</span>
+        <h2>Everything you need.<br /><em>Nothing you don't.</em></h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <span class="feature-icon">✦</span>
+          <div class="feature-title">AI-Personalized Curation</div>
+          <div class="feature-desc">Not a generic list. Every piece is chosen based on your coloring, fit preference, lifestyle, and budget — rebuilt fresh for you each time.</div>
+        </div>
+        <div class="feature-card reveal">
+          <span class="feature-icon">📦</span>
+          <div class="feature-title">Amazon-Sourced, Ships Fast</div>
+          <div class="feature-desc">Every item links directly to Amazon. Prime eligible, easy returns, one checkout. No hunting across six different websites.</div>
+        </div>
+        <div class="feature-card reveal">
+          <span class="feature-icon">🤍</span>
+          <div class="feature-title">Outfit Formulas Included</div>
+          <div class="feature-desc">10 pieces. 30+ outfits. We show you exactly how to combine every item so nothing sits unworn in your closet.</div>
+        </div>
+        <div class="feature-card reveal">
+          <span class="feature-icon">📩</span>
+          <div class="feature-title">Weekly Capsule Drops</div>
+          <div class="feature-desc">Fresh Amazon finds curated to your style — delivered to your inbox every week. New pieces, new seasons, always relevant.</div>
+        </div>
+        <div class="feature-card reveal">
+          <span class="feature-icon">🔄</span>
+          <div class="feature-title">Rebuild Anytime</div>
+          <div class="feature-desc">Life changes. So does your style. Retake the quiz whenever you need a fresh capsule — your access never expires.</div>
+        </div>
+        <div class="feature-card reveal">
+          <span class="feature-icon">💛</span>
+          <div class="feature-title">No Subscription. Ever.</div>
+          <div class="feature-desc">One payment. No recurring charges. No cancellation drama. We built this for women who've been burned before — this isn't that.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section style="background:var(--warm); border-top:1px solid var(--sand); border-bottom:1px solid var(--sand);" id="build">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-label">Simple Pricing</span>
+        <h2>One price.<br /><em>Yours forever.</em></h2>
+      </div>
+      <div class="pricing-card reveal">
+        <div class="price-amount">$9.99</div>
+        <div class="price-note">One-time · No subscription</div>
+        <ul class="price-features">
+          <li><span>✦</span> AI builds your personalized capsule from your quiz answers</li>
+          <li><span>✦</span> 10–12 curated Amazon pieces chosen for your style profile</li>
+          <li><span>✦</span> Direct Amazon links at your budget — shop in one click</li>
+          <li><span>✦</span> Complete outfit formula for every piece</li>
+          <li><span>✦</span> Rebuild your capsule anytime — access never expires</li>
+          <li><span>✦</span> Weekly curated Amazon drops delivered to your inbox</li>
+        </ul>
+        <div class="price-divider"></div>
+        <a href="#" class="btn-primary" style="display:block; text-align:center; margin-bottom:1rem;">
+          Build My Capsule — Free to Try
+        </a>
+        <p class="no-sub">No subscription. No surprise charges. No fine print.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <span class="section-label" style="color:var(--gold-light);">Why Ease & Aura</span>
+          <h2>Built for the woman<br /><em>who's done with the noise.</em></h2>
+          <p class="about-text" style="margin-top:1rem;">
+            We built Ease & Aura because curating a wardrobe shouldn't require a stylist budget, hours of scrolling, or a subscription that charges you $72 a month without warning.
+          </p>
+          <p class="about-text" style="margin-top:1rem;">
+            Every capsule is built by AI around your actual life — your coloring, your occasions, your budget. Sourced entirely on Amazon so everything ships fast, returns easily, and arrives without drama.
+          </p>
+          <p class="about-text" style="margin-top:1rem; font-style:italic; color:rgba(248,244,239,0.5);">
+            Dress with intention. Live with ease.
+          </p>
+        </div>
+        <div class="about-stats reveal">
+          <div class="stat-card">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Questions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">2<span style="font-size:1.5rem;">min</span></div>
+            <div class="stat-label">To Build</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Curated Pieces</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">30+</div>
+            <div class="stat-label">Outfit Combos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">EASE <em>&</em> AURA</div>
+    <div class="footer-tagline">AI Capsule Wardrobe · Amazon-Sourced</div>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#build">Build My Capsule</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="footer-affiliate">
+      Ease & Aura participates in the Amazon Associates Program. As an Amazon Associate, we earn from qualifying purchases at no additional cost to you.
+    </p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
