@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ease & Aura — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: #1E1A17; }
+    body {
+      background-color: #1E1A17 !important;
+      min-height: 100vh;
+      font-family: 'Jost', sans-serif;
+      color: #F8F4EF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    .wrap { max-width: 540px; width: 100%; }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      color: #F8F4EF;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      white-space: nowrap;
+    }
+    .logo em { color: #C9A96E; font-style: italic; }
+
+    .sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      font-weight: 500;
+      margin-bottom: 2.5rem;
+      display: block;
+    }
+
+    .line {
+      width: 64px;
+      height: 1px;
+      background: #C9A96E;
+      margin: 0 auto 2.5rem;
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      color: #F8F4EF;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    h1 em { font-style: italic; color: #C9A96E; }
+
+    p.desc {
+      font-size: 1rem;
+      color: #C4B5A5;
+      line-height: 1.85;
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+    .tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9A8878;
+      font-weight: 400;
+    }
+    .tag::before { content: "✦ "; color: #C9A96E; }
+
+    .box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,169,110,0.35);
+      border-radius: 3px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .box-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    input {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.82rem 1rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 2px;
+      font-size: 0.9rem;
+      font-family: 'Jost', sans-serif;
+      color: #F8F4EF;
+      outline: none;
+    }
+    input::placeholder { color: #5A4A3A; }
+    input:focus { border-color: #C9A96E; }
+    button {
+      background: #C9A96E;
+      color: #1E1A17;
+      border: none;
+      padding: 0.82rem 1.4rem;
+      border-radius: 2px;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'Jost', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    button:hover { background: #F8F4EF; }
+    .ok { display: none; color: #C9A96E; font-size: 0.82rem; margin-top: 0.75rem; }
+    .note { font-size: 0.6rem; color: #4A3A30; margin-top: 0.6rem; }
+
+    .foot {
+      font-size: 0.62rem;
+      color: #9A8878;
+      font-style: italic;
+      letter-spacing: 0.08em;
+    }
+    .foot strong { color: #C9A96E; font-style: normal; }
+
+    @media (max-width: 480px) {
+      .row { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">EASE <em>and</em> AURA</div>
+    <span class="sub">AI Capsule Wardrobe</span>
+    <div class="line"></div>
+    <h1>Something beautiful<br /><em>is almost here.</em></h1>
+    <p class="desc">A personalized capsule wardrobe built by AI — for your body, your coloring, your life, and the woman you are becoming. Not a generic list. Yours.</p>
+    <div class="tags">
+      <span class="tag">AI-Curated</span>
+      <span class="tag">Elevated Sources</span>
+      <span class="tag">Body Shape Intelligence</span>
+      <span class="tag">Life Transition Aware</span>
+    </div>
+    <div class="box">
+      <span class="box-label">Be the first to know when we launch</span>
+      <div class="row">
+        <input type="email" id="em" placeholder="your@email.com" onkeydown="if(event.key==='Enter')go()" />
+        <button onclick="go()">Notify Me</button>
+      </div>
+      <div class="ok" id="ok">✦ &nbsp; You are on the list. We will be in touch soon.</div>
+      <p class="note">No spam. No subscriptions. Just your launch invite.</p>
+    </div>
+    <p class="foot">Launching soon — <strong>easeandaura.com</strong></p>
+  </div>
+  <script>
+    async function go() {
+      const el = document.getElementById('em');
+      const email = el.value.trim();
+      if (!email || !email.includes('@')) { el.style.borderColor='#E88'; return; }
+      document.querySelector('button').disabled = true;
+      document.querySelector('button').textContent = '...';
+      try {
+        await fetch('https://ease-and-aura-api.onrender.com/capture-email', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({email})
+        });
+      } catch(e) {}
+      el.style.display='none';
+      document.querySelector('button').style.display='none';
+      document.getElementById('ok').style.display='block';
+    }
+  </script>
+</body>
+</html>
