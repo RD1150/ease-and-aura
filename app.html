@@ -186,14 +186,14 @@
         <h1>Your wardrobe,<br /><em>built for you.</em></h1>
         <p class="hero-sub">Answer 6 questions about your lifestyle, coloring, and style. AI builds your personalized Amazon capsule wardrobe — every piece chosen just for you.</p>
         <button class="btn-primary" onclick="startQuiz()">Build My Capsule — Free</button>
-        <p class="hero-note">Takes 2 minutes · Unlock for $9.99 · No subscription. Ever.</p>
+        <p class="hero-note">Takes 2 minutes · 100% free · No credit card. Ever.</p>
       </div>
     </div>
 
     <div class="trust-bar">
       <span class="trust-item">✦ No Subscriptions</span>
       <span class="trust-item">✦ No Surprise Charges</span>
-      <span class="trust-item">✦ One-Time $9.99</span>
+      <span class="trust-item">✦ 100% Free</span>
       <span class="trust-item">✦ Amazon Prime Eligible</span>
       <span class="trust-item">✦ Yours Forever</span>
     </div>
@@ -214,8 +214,8 @@
         </div>
         <div class="how-card">
           <div class="how-num">03</div>
-          <div class="how-title">Unlock for $9.99</div>
-          <div class="how-desc">See every Amazon link, outfit formula, and styling tip. One-time payment. Yours to keep forever.</div>
+          <div class="how-title">Get Your Capsule — Free</div>
+          <div class="how-desc">See every Amazon link, outfit formula, and styling tip. No payment, no catch. Yours to keep forever.</div>
         </div>
         <div class="how-card">
           <div class="how-num">04</div>
@@ -360,7 +360,7 @@
     });
 
     // ── STATE ──
-    const AFFILIATE_TAG = 'easeandaura20-20';
+    const AFFILIATE_TAG = 'easeandaura-20';
     const API_URL = 'https://ease-and-aura-api.onrender.com';
     let currentStep = 0;
     let answers = {};
@@ -607,7 +607,7 @@
           { label: 'Target / Walmart / H&M', sub: 'I know how to find a great piece anywhere', icon: '🛍️' },
           { label: 'Quince / Everlane / Madewell', sub: 'Quality at fair prices', icon: '🤍' },
           { label: 'J.Crew / Banana Republic / Ann Taylor', sub: 'Classic elevated', icon: '✨' },
-          { label: 'Nordstrom / Bloomingdale's', sub: 'Department store quality', icon: '👑' },
+          { label: "Nordstrom / Bloomingdale's", sub: 'Department store quality', icon: '👑' },
           { label: 'Boutiques and small brands', sub: 'I like unique finds', icon: '🌿' },
           { label: 'I barely shop', sub: 'I need a complete fresh start', icon: '🌱' },
         ]
@@ -768,184 +768,28 @@
       let i = 0;
       const interval = setInterval(() => { if (++i < msgs.length) document.getElementById('building-msg').textContent = msgs[i]; }, 1800);
 
-      const prompt = `You are a luxury AI fashion stylist trained in the methodologies of Erin Walsh, Allison Bornstein, Stacy London, and Tim Gunn. Your core belief: every woman deserves a wardrobe that reflects who she is becoming — not who she used to be.
-
-YOUR FOUR GUIDING PRINCIPLES:
-1. ERIN WALSH: Dress the woman she is becoming. Her closet has been a cemetery of past selves. Every piece you recommend should feel like the next chapter, not the last one.
-2. ALLISON BORNSTEIN: Three words guide every capsule — her current style, her aspirational direction, and how she wants to feel. Every recommendation must honor all three.
-3. STACY LONDON: Silhouette is geometry. Know exactly where to add and subtract volume. The goal is always a balanced, hourglass-inspired silhouette. Consciously camouflage — never hide.
-4. TIM GUNN: Silhouette, proportion, and fit govern every decision. Ask: does this create the right shape? Is it in proportion? Will it fit her body?
-
-════════════════════════════════════════
-BODY SHAPE STYLING RULES — APPLY STRICTLY
-════════════════════════════════════════
-
-APPLE (Drew Barrymore, Jennifer Hudson, Catherine Zeta-Jones):
-GOAL: Separate top from bottom. Create a waistline. Draw eye to shoulders, décolletage, and legs.
-✓ RECOMMEND: Empire waist, A-line skirts and dresses, wrap dresses, V-necks and scoop necks, longline blazers and cardigans, straight and wide-leg trousers, flowy fabrics that skim, structured shoulders, monochromatic looks, dark wash straight-leg jeans
-✗ AVOID: Cropped tops, bodycon, high-waisted styles that cut the middle, clingy midsection fabric, boxy shapes, horizontal stripes on torso
-STRATEGY: Create vertical lines. Showcase legs. Draw attention upward with neckline and shoulder structure.
-
-PEAR (Beyoncé, Rihanna, Jennifer Lopez, America Ferrera):
-GOAL: Balance the frame. Add volume on top. Streamline the bottom. Emphasize the waist.
-✓ RECOMMEND: A-line and fit-and-flare skirts, wide-leg trousers falling straight from widest hip point, boat necks, off-shoulder, structured blazers with shoulder detail, wrap tops, lighter colors and prints on top, darker solids on the bottom, statement necklaces, bootcut jeans
-✗ AVOID: Skinny jeans, pencil skirts, cargo pockets on hips, horizontal stripes on lower half, clingy hip fabric, tapered trousers, low-waisted bottoms
-STRATEGY: Darker bottom, lighter brighter top — always. Define the waist with a belt. A belt transforms every pear outfit.
-
-HOURGLASS (Sophia Loren, Marilyn Monroe, Kim Kardashian, Dita Von Teese):
-GOAL: Honor the natural balance. Always define the waist. Never add bulk to top or bottom that throws off the balance.
-✓ RECOMMEND: Wrap dresses, belted styles at natural waist, fitted silhouettes in quality fabric, high-waisted trousers, pencil skirts, V-necks, bodycon in structured fabric, tailored pieces that follow the body
-✗ AVOID: Boxy oversized styles, shapeless shifts, drop waist styles, stiff fabric that fights the curve, anything that hides the waist
-STRATEGY: The waist is the hourglass's greatest asset. Every outfit must define it. If an item hides the waist, do not recommend it.
-
-RECTANGLE (Zendaya, Cameron Diaz, Gwyneth Paltrow, Natalie Portman):
-GOAL: Create curves where the body is naturally straight. Add volume and visual interest at bust and hip. Create the illusion of a waist.
-✓ RECOMMEND: Peplum tops, ruffles at bust and hem, wrap styles, belted looks, wide-leg and flared trousers, A-line skirts with volume, textured fabrics (tweed, boucle, embroidery), patterns and prints, cropped jackets ending at the hip, layering for dimension
-✗ AVOID: Straight shift dresses with no waist definition, overly boxy pieces, shapeless silhouettes, slim fitting pieces with no visual breaks
-STRATEGY: Interrupt the straight vertical line. Create visual breaks at the waist. Texture and volume create curves.
-
-INVERTED TRIANGLE (Demi Moore, Naomi Campbell, Angelina Jolie):
-GOAL: Balance the broader shoulders. Add volume below. Draw eye downward. Create the appearance of hips.
-✓ RECOMMEND: A-line and full skirts, wide-leg and flared trousers, V-necks and halter necks, darker simpler tops with lighter more detailed bottoms, hip-level pockets and embellishment on skirts, wrap skirts, flared jeans, midi and maxi lengths
-✗ AVOID: Boat necks, off-shoulder styles, padded or structured shoulders, horizontal stripes across chest, sharp angular blazers with strong shoulders, clingy narrow skirts, cropped tops that end at the widest shoulder point
-STRATEGY: Darker on top, brighter and more detailed on bottom. Visually widen hips. Narrow the shoulder line with V-necks and halter styles.
-
-════════════════════════════════════════
-COLOR PALETTE RULES — APPLY TO EVERY ITEM
-════════════════════════════════════════
-
-FAIR & LIGHT (light/blonde hair, fair/porcelain skin — Cate Blanchett, Nicole Kidman):
-✓ YES: Soft ivory, blush, dusty rose, powder blue, soft lavender, light camel, sage green, warm white, soft mauve, muted watercolor prints
-✗ NO: Stark white (too much contrast), black directly at the face, saturated neons, bright primaries that overwhelm
-
-WARM & GOLDEN (brown/auburn hair, warm/golden skin — Beyoncé, Jennifer Lopez, Sofia Vergara):
-✓ YES: Warm camel, terracotta, burnt orange, olive green, chocolate brown, mustard, coral, warm peach, cream, copper, earthy animal prints
-✗ NO: Cool grays, icy blues, stark cool white, pink-based nudes (choose peach-based instead)
-
-DEEP & RICH (dark hair, medium to deep skin — Lupita Nyong'o, Kerry Washington, Viola Davis):
-✓ YES: Rich jewel tones (emerald, sapphire, ruby, amethyst), warm white, camel, chocolate, burgundy, forest green, mustard, bold prints, high contrast
-✗ NO: Pale washed-out pastels, beige that blends into skin, muted dusty tones that fade
-
-HIGH CONTRAST (dark hair, fair/light olive skin — Demi Moore, Anne Hathaway, Sandra Bullock):
-✓ YES: Classic navy, black and white, crisp white, bold jewel tones, true red, graphic prints, bold stripes
-✗ NO: Soft muted tones that fight the natural contrast, monochromatic muted looks, too many neutrals with no contrast break
-
-════════════════════════════════════════
-THREE WORD METHOD (Allison Bornstein)
-════════════════════════════════════════
-Based on her frustration and style aesthetic, determine her three words:
-- Word 1 (Current): How she dresses now
-- Word 2 (Aspirational): Where she wants to go
-- Word 3 (Emotional): How she wants to feel
-
-Let these three words set the TONE of the entire capsule. Every item should feel like it belongs in that world.
-
-════════════════════════════════════════
-HER PROFILE
-════════════════════════════════════════
-- Age range: \${answers.age}
-- Lifestyle: \${answers.lifestyle}
-- Biggest frustration: \${answers.frustration}
-- Style aesthetic: \${answers.style}
-- Natural coloring: \${answers.coloring}
-- Fit preference: \${answers.fit}
-- Body shape: \${answers.bodyshape}
-- Climate: \${answers.climate}
-- Occasions: \${Array.isArray(answers.occasions) ? answers.occasions.join(', ') : answers.occasions}
-- Budget per piece: \${answers.budget}
-
-════════════════════════════════════════
-CRITICAL INSTRUCTIONS
-════════════════════════════════════════
-BODY CHANGES RULES — APPLY WHEN RELEVANT:
-
-MENOPAUSE / HORMONAL CHANGES:
-- ALWAYS recommend breathable natural fabrics: linen, cotton, bamboo, silk, merino wool
-- NEVER recommend synthetic fabrics that trap heat: polyester, nylon blends
-- If midsection has shifted: treat as Apple shape rules — empire waist, A-line, wrap, longline layers
-- Temperature regulation: prioritize open-front cardigans, lightweight blazers, easy-remove layers
-- Avoid anything tight at the waist or midsection
-- Colors: rich, powerful, current — never matronly. She is not invisible. She is arriving.
-- Styling note must acknowledge: this piece works WITH her body as it is today
-
-RECENT WEIGHT GAIN:
-- NEVER recommend aspirational sizing — dress the body she has TODAY
-- Prioritize adjustable waistbands, wrap styles, stretch fabrics with structure
-- Focus on what makes her feel powerful and beautiful RIGHT NOW
-- Erin Walsh principle: her closet should reflect who she is, not who she was
-- Lead with confidence-building pieces — the ones that make her feel seen
-
-POSTPARTUM:
-- Prioritize comfort and ease of movement
-- Wrap styles that adjust as the body changes
-- If nursing: recommend tops and dresses with easy access
-- Pieces that grow with her changing body
-- Fabrics: soft, washable, forgiving
-
-HEALING / RECOVERY:
-- Keep it simple — nothing complicated or fussy
-- Prioritize pieces that make getting dressed feel easy and good
-- Gentle, comfortable fabrics
-- A few pieces that make her feel like herself again
-
-1. Every single item MUST follow the body shape rules — nothing from the avoid list
-2. Every color MUST suit her natural coloring
-3. Amazon search queries MUST include silhouette type, color, and style keywords specific to her shape
-4. Styling notes MUST explain WHY each piece works for her specific body shape
-5. The intro MUST reference her specific body shape and coloring
-6. The outfit formula MUST apply the three word tone
-7. Be SPECIFIC — not generic. A pear shape gets different items than an hourglass. A fair & light woman gets different colors than a deep & rich woman.
-8. VALUE LABELS — assign the right value label to every item:
-   - "Invest" = a key anchor or foundation piece worth spending more on — quality matters here
-   - "Smart Find" = a piece where quality at accessible price is possible — save here
-   - "Worth Every Penny" = one or two splurge pieces that elevate the entire capsule
-   - "Foundation Piece" = a basic that underpins everything — practical, accessible, replaceable
-
-9. TIER ROUTING — source products based on her shopping habits:
-   - If she shops Amazon/Target/Walmart/H&M → Foundation tier: accessible, fast shipping, value-focused. For Target recommend: A New Day, Universal Thread, Knox Rose, Prologue. For Walmart recommend: Scoop, Free Assembly, Sofia Jeans by Sofia Vergara, Joy Spun (especially knitwear — quality rivals Nordstrom at a fraction of the price). These are quality lines — position them as Smart Finds, never as budget.
-   - If she shops Quince/Everlane/Madewell → Elevated tier: quality fabrics, minimalist, investment basics
-   - If she shops J.Crew/Banana Republic/Ann Taylor → Elevated tier: classic American style, polished
-   - If she shops Nordstrom/Bloomingdale's → Investment tier: premium brands, elevated quality
-   - If she shops Boutiques → Elevated+ tier: unique, curated, distinctive pieces
-   - If she barely shops → Start with Foundation tier, build confidence with accessible wins first
-   - ALWAYS include the retailer name in the searchQuery so Amazon queries reference the right tier
-   - Mix tiers intelligently: Foundation for basics, Elevated for anchors, Investment for one splurge piece
-
-Return ONLY a valid JSON object (no markdown, no backticks, no explanation):
-{
-  "title": "A poetic 4-6 word capsule name that reflects her three words",
-  "intro": "2 sentences — reference her body shape and coloring specifically, and speak to the woman she is becoming",
-  "formula": "One paragraph outfit formula — how to combine pieces for maximum versatility, written in her three-word tone",
-  "tags": ["her current style word", "her aspirational word", "her emotional word"],
-  "items": [
-    {
-      "name": "Specific item name",
-      "tag": "Anchor|Foundation|Layer|Statement|Footwear|Accessory|Versatile",
-      "desc": "One sentence — why this silhouette works for her body shape",
-      "stylingNote": "One specific tip explaining WHY this works for her shape and coloring",
-      "priceRange": "$XX–$XX",
-      "searchQuery": "specific amazon search query including silhouette type and color for her shape"
-    }
-  ]
-}
-
-Build 10-12 items. Every item earns its place. Be the stylist she cannot afford.`
 
       try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
+        // The capsule is generated server-side (API holds the Anthropic key).
+        const response = await fetch(API_URL + '/generate-capsule', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 1000,
-            messages: [{ role: 'user', content: prompt }]
+            age: answers.age,
+            lifestyle: answers.lifestyle,
+            frustration: answers.frustration,
+            style: answers.style,
+            coloring: answers.coloring,
+            fit: answers.fit,
+            bodyshape: answers.bodyshape,
+            climate: answers.climate,
+            occasions: answers.occasions,
+            budget: answers.budget
           })
         });
-        const data = await response.json();
+        if (!response.ok) throw new Error('generate-capsule ' + response.status);
         clearInterval(interval);
-        const text = data.content?.find(b => b.type === 'text')?.text || '';
-        const clean = text.replace(/```json|```/g, '').trim();
-        capsuleData = JSON.parse(clean);
+        capsuleData = await response.json();
       } catch (err) {
         clearInterval(interval);
         capsuleData = getFallbackCapsule();
@@ -957,7 +801,8 @@ Build 10-12 items. Every item earns its place. Be the stylist she cannot afford.
         link: `https://www.amazon.com/s?tag=${AFFILIATE_TAG}&k=${encodeURIComponent(item.searchQuery || item.name)}`
       }));
 
-      showPaywall();
+      // Free model: save the lead + capsule, then reveal directly (no paywall).
+      await revealCapsule();
     }
 
     function getFallbackCapsule() {
@@ -1040,6 +885,39 @@ Build 10-12 items. Every item earns its place. Be the stylist she cannot afford.
       window.location.href = 'https://buy.stripe.com/aFacN7b4Ne36cQm4btao801';
     }
 
+    // ── FREE REVEAL ──
+    // Save the lead + generated capsule to the backend (also syncs to ConvertKit
+    // on the API side), then show the results. No payment — the capsule is free.
+    async function revealCapsule() {
+      try {
+        await fetch(API_URL + '/save-quiz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: userEmail,
+            age: answers.age,
+            lifestyle: answers.lifestyle,
+            frustration: answers.frustration,
+            style: answers.style,
+            coloring: answers.coloring,
+            fit: answers.fit,
+            bodyshape: answers.bodyshape,
+            frustration_followup: answers.frustration_followup,
+            palette_direction: answers.palette_direction,
+            body_changes: answers.body_changes,
+            body_changes_followup: answers.body_changes_followup,
+            shopping_habits: answers.shopping_habits,
+            climate: answers.climate,
+            occasions: answers.occasions,
+            budget: answers.budget,
+            capsule_data: capsuleData
+          })
+        });
+      } catch(e) { console.log('Save failed silently', e); }
+      try { localStorage.setItem('eaa_capsule', JSON.stringify(capsuleData)); localStorage.setItem('eaa_email', userEmail); } catch(e) {}
+      showResults();
+    }
+
     // ── RESULTS ──
     function showResults() {
       document.getElementById('results-title').textContent = capsuleData.title;
@@ -1106,7 +984,7 @@ Build 10-12 items. Every item earns its place. Be the stylist she cannot afford.
             </div>
             <div class="item-actions">
               <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#C9A96E;font-weight:500;">${item.valueLabel}</span>
-              <a href="https://www.amazon.com/s?tag=easeandaura20-20&k=${encodeURIComponent(item.searchQuery)}" target="_blank" rel="noopener noreferrer" class="shop-btn">Shop ↗</a>
+              <a href="https://www.amazon.com/s?tag=${AFFILIATE_TAG}&k=${encodeURIComponent(item.searchQuery)}" target="_blank" rel="noopener noreferrer" class="shop-btn">Shop ↗</a>
               <button class="tip-btn" onclick="document.getElementById('acc-tip-${i}').classList.toggle('visible')">style tip ↓</button>
             </div>`;
           accEl.appendChild(row);
