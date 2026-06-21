@@ -3,196 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ease & Aura — Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <title>Ease & Aura — AI Capsule Wardrobe</title>
+  <!-- Fallback redirect if JavaScript is disabled -->
+  <meta http-equiv="refresh" content="0; url=/app.html" />
+  <link rel="canonical" href="https://easeandaura.com/app.html" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { background: #1E1A17; }
+    html, body { height: 100%; background: #F8F4EF; }
     body {
-      background-color: #1E1A17 !important;
-      min-height: 100vh;
       font-family: 'Jost', sans-serif;
-      color: #F8F4EF;
+      color: #3A3530;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
       text-align: center;
+      padding: 2rem;
     }
-    .wrap { max-width: 540px; width: 100%; padding-top: 3rem; }
-
     .logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      color: #F8F4EF;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-      white-space: nowrap;
+      font-size: 1.6rem;
+      letter-spacing: 0.18em;
+      margin-bottom: 1.25rem;
     }
     .logo em { color: #C9A96E; font-style: italic; }
-    .find-it { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-style: italic; color: #C9A96E; margin-bottom: 1.5rem; font-weight: 400; line-height: 1.2; }
-    .find-it em { font-style: italic; }
-
-    .sub {
-      font-size: 0.6rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: #C9A96E;
-      font-weight: 500;
-      margin-bottom: 2.5rem;
-      display: block;
+    .spinner {
+      width: 32px; height: 32px; margin: 0 auto 1rem;
+      border: 2px solid #E5DDD3; border-top-color: #C9A96E;
+      border-radius: 50%; animation: spin 1s linear infinite;
     }
-
-    .line {
-      width: 64px;
-      height: 1px;
-      background: #C9A96E;
-      margin: 0 auto 2.5rem;
-      opacity: 0.7;
-    }
-
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      color: #F8F4EF;
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
-    }
-    h1 em { font-style: italic; color: #C9A96E; }
-
-    p.desc {
-      font-size: 1rem;
-      color: #C4B5A5;
-      line-height: 1.85;
-      max-width: 420px;
-      margin: 0 auto 2.5rem;
-      font-weight: 300;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.2rem;
-      margin-bottom: 3rem;
-    }
-    .tag {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #9A8878;
-      font-weight: 400;
-    }
-    .tag::before { content: "✦ "; color: #C9A96E; }
-
-    .box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(201,169,110,0.35);
-      border-radius: 3px;
-      padding: 1.75rem;
-      margin-bottom: 1.5rem;
-    }
-    .box-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #C9A96E;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 1rem;
-    }
-    .row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-    input {
-      flex: 1;
-      min-width: 180px;
-      padding: 0.82rem 1rem;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(201,169,110,0.3);
-      border-radius: 2px;
-      font-size: 0.9rem;
-      font-family: 'Jost', sans-serif;
-      color: #F8F4EF;
-      outline: none;
-    }
-    input::placeholder { color: #5A4A3A; }
-    input:focus { border-color: #C9A96E; }
-    button {
-      background: #C9A96E;
-      color: #1E1A17;
-      border: none;
-      padding: 0.82rem 1.4rem;
-      border-radius: 2px;
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-family: 'Jost', sans-serif;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    button:hover { background: #F8F4EF; }
-    .ok { display: none; color: #C9A96E; font-size: 0.82rem; margin-top: 0.75rem; }
-    .note { font-size: 0.6rem; color: #4A3A30; margin-top: 0.6rem; }
-
-    .foot {
-      font-size: 0.62rem;
-      color: #9A8878;
-      font-style: italic;
-      letter-spacing: 0.08em;
-    }
-    .foot strong { color: #C9A96E; font-style: normal; }
-
-    @media (max-width: 480px) {
-      .row { flex-direction: column; }
-      button { width: 100%; }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .note { font-size: 0.72rem; letter-spacing: 0.12em; color: #9A8878; line-height: 1.8; }
+    a { color: #C9A96E; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="logo">EASE <em>and</em> AURA</div>
-    <span class="sub">AI Capsule Wardrobe</span>
-    <div class="line"></div>
-    <h1>What is your signature style?</h1><p class="find-it"><em>Let's find it together.</em></p>
-    <p class="desc">Your personalized capsule wardrobe — built by AI, curated for your body, your life, and the woman you are becoming.</p>
-    <div class="tags">
-      <span class="tag">AI-Curated</span>
-      <span class="tag">Elevated Sources</span>
-      <span class="tag">Body Shape Intelligence</span>
-      <span class="tag">Life Transition Aware</span>
-    </div>
-    <div class="box">
-      <span class="box-label">Be the first to know when we launch</span>
-      <div class="row">
-        <input type="email" id="em" placeholder="your@email.com" onkeydown="if(event.key==='Enter')go()" />
-        <button onclick="go()">Notify Me</button>
-      </div>
-      <div class="ok" id="ok">✦ &nbsp; You are on the list. We will be in touch soon.</div>
-      <p class="note">No spam. No subscriptions. Just your launch invite.</p>
-    </div>
-    <p class="foot">Launching soon — <strong>easeandaura.com</strong></p>
+  <div>
+    <div class="logo">EASE <em>&amp;</em> AURA</div>
+    <div class="spinner"></div>
+    <p class="note">Taking you to your style quiz&hellip;<br />
+      <a href="/app.html">Continue &rarr;</a> if you&rsquo;re not redirected.</p>
   </div>
   <script>
-    async function go() {
-      const el = document.getElementById('em');
-      const email = el.value.trim();
-      if (!email || !email.includes('@')) { el.style.borderColor='#E88'; return; }
-      document.querySelector('button').disabled = true;
-      document.querySelector('button').textContent = '...';
-      try {
-        await fetch('https://ease-and-aura-api.onrender.com/capture-email', {
-          method:'POST', headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({email})
-        });
-      } catch(e) {}
-      el.style.display='none';
-      document.querySelector('button').style.display='none';
-      document.getElementById('ok').style.display='block';
-    }
+    // Instant client-side redirect (replace() keeps it out of history).
+    window.location.replace('/app.html');
   </script>
 </body>
 </html>
