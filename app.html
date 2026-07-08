@@ -182,9 +182,9 @@
       <div class="hero-orb hero-orb-1"></div>
       <div class="hero-orb hero-orb-2"></div>
       <div style="position:relative">
-        <div class="hero-badge"><span>✦</span> AI-Curated · Amazon-Sourced · Yours to Keep <span>✦</span></div>
+        <div class="hero-badge"><span>✦</span> AI-Curated · Shop at Any Budget · Yours to Keep <span>✦</span></div>
         <h1>Your wardrobe,<br /><em>built for you.</em></h1>
-        <p class="hero-sub">Answer 6 questions about your lifestyle, coloring, and style. AI builds your personalized Amazon capsule wardrobe — every piece chosen just for you.</p>
+        <p class="hero-sub">Answer 6 questions about your lifestyle, coloring, and style. AI builds your personalized capsule wardrobe — every piece chosen just for you, shoppable at every budget.</p>
         <button class="btn-primary" onclick="startQuiz()">Build My Capsule — Free</button>
         <p class="hero-note">Takes 2 minutes · 100% free · No credit card. Ever.</p>
       </div>
@@ -194,7 +194,7 @@
       <span class="trust-item">✦ No Subscriptions</span>
       <span class="trust-item">✦ No Surprise Charges</span>
       <span class="trust-item">✦ 100% Free</span>
-      <span class="trust-item">✦ Amazon Prime Eligible</span>
+      <span class="trust-item">✦ Value to Elevated</span>
       <span class="trust-item">✦ Yours Forever</span>
     </div>
 
@@ -215,12 +215,12 @@
         <div class="how-card">
           <div class="how-num">03</div>
           <div class="how-title">Get Your Capsule — Free</div>
-          <div class="how-desc">See every Amazon link, outfit formula, and styling tip. No payment, no catch. Yours to keep forever.</div>
+          <div class="how-desc">See every shoppable link, outfit formula, and styling tip. No payment, no catch. Yours to keep forever.</div>
         </div>
         <div class="how-card">
           <div class="how-num">04</div>
           <div class="how-title">Weekly Drops</div>
-          <div class="how-desc">Fresh Amazon finds curated to your style — delivered to your inbox every week. New pieces, new seasons.</div>
+          <div class="how-desc">Fresh finds curated to your style — delivered to your inbox every week. New pieces, new seasons.</div>
         </div>
       </div>
       <div style="margin-top:2.5rem">
@@ -231,7 +231,7 @@
     <footer>
       <div class="footer-logo">EASE <em>&</em> AURA</div>
       <div class="footer-tagline">Dress with intention · Live with ease</div>
-      <p class="footer-affiliate">Ease & Aura participates in the Amazon Associates Program. As an Amazon Associate, we earn from qualifying purchases at no additional cost to you.</p>
+      <p class="footer-affiliate">Ease & Aura participates in the Amazon Associates Program and other affiliate programs. We earn from qualifying purchases at no additional cost to you.</p>
     </footer>
   </div>
 
@@ -328,6 +328,29 @@
         <p class="formula-text" id="results-formula"></p>
       </div>
       <span class="items-label" id="items-label"></span>
+
+      <!-- COMPARABLE CAPSULE: budget-tier toggle -->
+      <style>
+        .tier-toggle { margin: 0.4rem 0 1.8rem; text-align: center; }
+        .tier-toggle-label { display:block; font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:#C9A96E; margin-bottom:0.7rem; }
+        .tier-btns { display:inline-flex; gap:0.5rem; flex-wrap:wrap; justify-content:center; }
+        .tier-btn { font-family:'Jost',sans-serif; cursor:pointer; background:#FBF8F4; border:1px solid #E6DDD0; border-radius:6px; padding:0.6rem 1.1rem; display:flex; flex-direction:column; align-items:center; gap:0.15rem; min-width:104px; transition:all 0.18s ease; color:#3A3530; }
+        .tier-btn span { font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:#9A8878; }
+        .tier-btn:hover { border-color:#C9A96E; }
+        .tier-btn.active { background:#3A3530; border-color:#3A3530; color:#FAF7F3; }
+        .tier-btn.active span { color:rgba(250,247,243,0.7); }
+        .tier-note { font-size:0.72rem; color:#7A6A5A; margin-top:0.8rem; font-style:italic; }
+      </style>
+      <div class="tier-toggle">
+        <span class="tier-toggle-label">Shop your capsule at every budget</span>
+        <div class="tier-btns">
+          <button class="tier-btn" data-tier="value" onclick="setTier('value')">💵 Value<span>Walmart</span></button>
+          <button class="tier-btn active" data-tier="everyday" onclick="setTier('everyday')">✨ Everyday<span>Amazon</span></button>
+          <button class="tier-btn" data-tier="elevated" onclick="setTier('elevated')">💎 Elevated<span>Nordstrom</span></button>
+        </div>
+        <p id="tier-note" class="tier-note">Showing your capsule at Amazon — Prime-eligible, fast, reliable.</p>
+      </div>
+
       <div id="results-items"></div>
       <!-- ACCESSORY SECTION -->
       <div id="accessory-section" style="margin-top:2rem;">
@@ -368,7 +391,7 @@
     <footer>
       <div class="footer-logo">EASE <em>&</em> AURA</div>
       <div class="footer-tagline">Dress with intention · Live with ease</div>
-      <p class="footer-affiliate">Ease & Aura participates in the Amazon Associates Program. As an Amazon Associate, we earn from qualifying purchases at no additional cost to you.</p>
+      <p class="footer-affiliate">Ease & Aura participates in the Amazon Associates Program and other affiliate programs. We earn from qualifying purchases at no additional cost to you.</p>
     </footer>
   </div>
 
@@ -384,6 +407,31 @@
     // ── STATE ──
     const AFFILIATE_TAG = 'easeandaura-20';
     const API_URL = 'https://ease-and-aura-api.onrender.com';
+
+    // ── COMPARABLE CAPSULE: budget tiers ──
+    // Same personalized capsule, shopped at three price points. Amazon keeps our
+    // Associates tag; Walmart/Nordstrom links are auto-affiliated by the Sovrn
+    // (VigLink) script at the end of <body>.
+    const TIERS = {
+      value:    { label: 'Value',    icon: '💵', retailer: 'Walmart',   note: 'Shop the whole look for less' },
+      everyday: { label: 'Everyday', icon: '✨', retailer: 'Amazon',    note: 'Prime-eligible, fast, reliable' },
+      elevated: { label: 'Elevated', icon: '💎', retailer: 'Nordstrom', note: 'Elevated quality that lasts' },
+    };
+    let currentTier = 'everyday';
+    function searchLink(query, tier) {
+      const q = encodeURIComponent(query);
+      if (tier === 'value')    return `https://www.walmart.com/search?q=${q}`;
+      if (tier === 'elevated') return `https://www.nordstrom.com/sr?keyword=${q}`;
+      return `https://www.amazon.com/s?tag=${AFFILIATE_TAG}&k=${q}`; // everyday
+    }
+    function setTier(tier) {
+      currentTier = tier;
+      document.querySelectorAll('.tier-btn').forEach(b => b.classList.toggle('active', b.dataset.tier === tier));
+      const t = TIERS[tier];
+      const noteEl = document.getElementById('tier-note');
+      if (noteEl) noteEl.textContent = `Showing your capsule at ${t.retailer} — ${t.note}.`;
+      document.querySelectorAll('.shop-btn[data-query]').forEach(a => { a.href = searchLink(a.dataset.query, tier); });
+    }
     let currentStep = 0;
     let answers = {};
     let multiSelected = [];
@@ -817,11 +865,7 @@
         capsuleData = getFallbackCapsule();
       }
 
-      // Add affiliate links
-      capsuleData.items = capsuleData.items.map(item => ({
-        ...item,
-        link: `https://www.amazon.com/s?tag=${AFFILIATE_TAG}&k=${encodeURIComponent(item.searchQuery || item.name)}`
-      }));
+      // Shop links are built per selected budget tier at render time (see searchLink).
 
       // Free model: save the lead + capsule, then reveal directly (no paywall).
       await revealCapsule();
@@ -945,7 +989,7 @@
       document.getElementById('results-title').textContent = capsuleData.title;
       document.getElementById('results-intro').textContent = capsuleData.intro;
       document.getElementById('results-formula').textContent = capsuleData.formula;
-      document.getElementById('items-label').textContent = capsuleData.items.length + ' Curated Pieces — All on Amazon';
+      document.getElementById('items-label').textContent = capsuleData.items.length + ' Curated Pieces';
 
       const tagsEl = document.getElementById('results-tags');
       tagsEl.innerHTML = '';
@@ -978,7 +1022,7 @@
           </div>
           <div class="item-actions">
             <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:${valueLabelColor};font-weight:500;">${valueLabel}</span>
-            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="shop-btn">Shop ↗</a>
+            <a href="${searchLink(item.searchQuery || item.name, currentTier)}" data-query="${(item.searchQuery || item.name).replace(/"/g,'&quot;')}" target="_blank" rel="noopener noreferrer" class="shop-btn">Shop ↗</a>
             <button class="tip-btn" onclick="toggleTip(${i})">style tip ↓</button>
           </div>`;
         itemsEl.appendChild(row);
@@ -1006,7 +1050,7 @@
             </div>
             <div class="item-actions">
               <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#C9A96E;font-weight:500;">${item.valueLabel}</span>
-              <a href="https://www.amazon.com/s?tag=${AFFILIATE_TAG}&k=${encodeURIComponent(item.searchQuery)}" target="_blank" rel="noopener noreferrer" class="shop-btn">Shop ↗</a>
+              <a href="${searchLink(item.searchQuery, currentTier)}" data-query="${(item.searchQuery || item.name).replace(/"/g,'&quot;')}" target="_blank" rel="noopener noreferrer" class="shop-btn">Shop ↗</a>
               <button class="tip-btn" onclick="document.getElementById('acc-tip-${i}').classList.toggle('visible')">style tip ↓</button>
             </div>`;
           accEl.appendChild(row);
@@ -1041,5 +1085,8 @@
       }
     });
   </script>
+
+  <!-- Sovrn Commerce (VigLink) auto-affiliate: monetizes outbound merchant links (Walmart, Nordstrom, etc.). Amazon keeps our own Associates tag. -->
+  <script type="text/javascript"> var vglnk = {key: '73123d652c64849d222de7bf10b9877f'}; (function(d, t) {var s = d.createElement(t); s.type = 'text/javascript';s.async = true; s.src = '//cdn.viglink.com/api/vglnk.js'; var r = d.getElementsByTagName(t)[0]; r.parentNode.insertBefore(s, r); }(document, 'script')); </script>
 </body>
 </html>
