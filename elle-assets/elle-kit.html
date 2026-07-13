@@ -1,0 +1,732 @@
+<title>The Elle Kit — Ease & Aura</title>
+
+<style>
+  :root {
+    --gold: #C9A96E;
+    --gold-deep: #A8874A;
+    --ink: #3A3530;
+    --ink-soft: #6B6157;
+    --clay: #9A8878;
+    --ground: #FBF8F4;
+    --surface: #FFFFFF;
+    --cream: #F0EBE3;
+    --rule: #E3DACE;
+    --sage: #5F7355;
+    --rust: #A85D45;
+    --code-bg: #F5F0E8;
+
+    --serif: "Hoefler Text", "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    --sans: "Avenir Next", Avenir, "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --gold: #D4B87E;
+      --gold-deep: #E0C78F;
+      --ink: #EDE5D9;
+      --ink-soft: #A79C8D;
+      --clay: #8E8274;
+      --ground: #1A1816;
+      --surface: #232019;
+      --cream: #2A251E;
+      --rule: #3B352C;
+      --sage: #8FA383;
+      --rust: #D18A70;
+      --code-bg: #201D17;
+    }
+  }
+  :root[data-theme="dark"] {
+    --gold: #D4B87E;
+    --gold-deep: #E0C78F;
+    --ink: #EDE5D9;
+    --ink-soft: #A79C8D;
+    --clay: #8E8274;
+    --ground: #1A1816;
+    --surface: #232019;
+    --cream: #2A251E;
+    --rule: #3B352C;
+    --sage: #8FA383;
+    --rust: #D18A70;
+    --code-bg: #201D17;
+  }
+  :root[data-theme="light"] {
+    --gold: #C9A96E;
+    --gold-deep: #A8874A;
+    --ink: #3A3530;
+    --ink-soft: #6B6157;
+    --clay: #9A8878;
+    --ground: #FBF8F4;
+    --surface: #FFFFFF;
+    --cream: #F0EBE3;
+    --rule: #E3DACE;
+    --sage: #5F7355;
+    --rust: #A85D45;
+    --code-bg: #F5F0E8;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  /* ── masthead ── */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--clay);
+  }
+  .wordmark em { color: var(--gold); font-style: italic; }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    line-height: 1.1;
+    font-weight: 400;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .standfirst {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  /* ── sections ── */
+  section { margin-top: 4rem; }
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+    text-wrap: balance;
+  }
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .lede {
+    color: var(--ink-soft);
+    margin-bottom: 1.75rem;
+    max-width: 62ch;
+  }
+  h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 2rem 0 0.5rem;
+  }
+  p { max-width: 65ch; margin-bottom: 1rem; }
+  strong { font-weight: 600; color: var(--ink); }
+
+  /* ── status board ── */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 1rem;
+  }
+  .cell {
+    background: var(--surface);
+    padding: 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .cell .state {
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .cell .state::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+  .live    .state { color: var(--sage); }
+  .waiting .state { color: var(--gold-deep); }
+  .blocked .state { color: var(--rust); }
+  .cell .what { font-weight: 600; font-size: 0.95rem; line-height: 1.4; }
+  .cell .why  { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── the gate callout ── */
+  .gate {
+    border-left: 3px solid var(--gold);
+    background: var(--cream);
+    padding: 1.4rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .gate p:last-child { margin-bottom: 0; }
+  .warn {
+    border-left: 3px solid var(--rust);
+    background: var(--surface);
+    padding: 1.4rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .warn p:last-child { margin-bottom: 0; }
+  .warn .tag, .gate .tag {
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .warn .tag { color: var(--rust); }
+  .gate .tag { color: var(--gold-deep); }
+
+  /* ── copy blocks ── */
+  .copyblock { margin: 1.1rem 0 1.75rem; }
+  .copyhead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--ink);
+    color: var(--ground);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  :root[data-theme="dark"] .copyhead,
+  .copyhead { color: var(--ground); }
+  @media (prefers-color-scheme: dark) {
+    .copyhead { background: #3B352C; color: var(--ink); }
+  }
+  :root[data-theme="dark"] .copyhead { background: #3B352C; color: var(--ink); }
+  :root[data-theme="light"] .copyhead { background: var(--ink); color: #FBF8F4; }
+
+  .copybtn {
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.2rem 0.65rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .copybtn:hover { background: var(--gold); color: #241F19; }
+  .copybtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .copybtn.done { background: var(--sage); border-color: var(--sage); color: #fff; }
+
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-top: none;
+    padding: 1.1rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.83rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    color: var(--ink);
+  }
+  code {
+    font-family: var(--mono);
+    font-size: 0.87em;
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    border: 1px solid var(--rule);
+  }
+  pre code { background: none; border: none; padding: 0; }
+
+  /* ── lists ── */
+  ul, ol { margin: 0 0 1.25rem 0; padding-left: 1.2rem; max-width: 65ch; }
+  li { margin-bottom: 0.5rem; }
+  li::marker { color: var(--gold); }
+
+  .checks { list-style: none; padding-left: 0; }
+  .checks li {
+    padding-left: 1.75rem;
+    position: relative;
+  }
+  .checks li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.55em;
+    width: 11px; height: 11px;
+    border: 1.5px solid var(--clay);
+  }
+  .checks li.done::before {
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .checks li.done { color: var(--ink-soft); }
+
+  /* ── table ── */
+  .scroller { overflow-x: auto; margin-bottom: 1.5rem; border: 1px solid var(--rule); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+  th, td {
+    text-align: left;
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  th {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clay);
+    font-weight: 700;
+    background: var(--cream);
+    white-space: nowrap;
+  }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ── pillars ── */
+  .pillars { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .pillar { background: var(--surface); padding: 1.25rem 1.4rem; }
+  .pillar .name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .pillar .hook {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .pillar .hook em { color: var(--gold-deep); font-style: normal; font-weight: 600; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 3.5rem 0 0;
+  }
+  .foot {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.82rem;
+    color: var(--clay);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="wordmark">Ease <em>&</em> Aura</div>
+    <h1>The <em>Launch</em> Kit</h1>
+    <p class="standfirst">Everything needed to take Ease &amp; Aura from a working site nobody visits to a live brand with an audience. No model, no AI faces — the capsule itself is the content.</p>
+  </header>
+
+  <section>
+    <div class="eyebrow">Where you actually stand</div>
+    <h2>The board</h2>
+    <p class="lede">The product is finished. The problem was never the product. Two things were quietly broken — both are fixed as of today.</p>
+
+    <div class="board">
+      <div class="cell live">
+        <span class="state">Live</span>
+        <span class="what">The site &amp; quiz</span>
+        <span class="why">easeandaura.com serves, quiz runs, capsule generates.</span>
+      </div>
+      <div class="cell live">
+        <span class="state">Live</span>
+        <span class="what">Email capture</span>
+        <span class="why">Verified end-to-end against the API. Leads are being saved.</span>
+      </div>
+      <div class="cell live">
+        <span class="state">Fixed today</span>
+        <span class="what">Amazon affiliate tag</span>
+        <span class="why">Was <code>easeandaura-20</code> — a tag that doesn't exist. Every link earned $0. Now <code>easeandaura20-20</code>.</span>
+      </div>
+      <div class="cell waiting">
+        <span class="state">Waiting</span>
+        <span class="what">Sovrn approval</span>
+        <span class="why">Review only starts after your first real affiliate clicks. Not a queue delay — a traffic problem.</span>
+      </div>
+      <div class="cell live">
+        <span class="state">Decided</span>
+        <span class="what">No model</span>
+        <span class="why">Two Runway rounds still read ~30 and obviously AI. Dropped. The clothes are the content now.</span>
+      </div>
+      <div class="cell blocked">
+        <span class="state">Blocked on you</span>
+        <span class="what">8 product photos</span>
+        <span class="why">Grab via Amazon SiteStripe. This is the <em>only</em> thing standing between you and posting.</span>
+      </div>
+    </div>
+
+    <div class="warn">
+      <span class="tag">The thing worth internalizing</span>
+      <p>Sovrn needs <strong>clicks</strong>, not sales. Amazon needs <strong>3 qualifying sales in 180 days</strong> or it closes your account. These are different gates with different clocks — don't conflate them. And never ask anyone to click your links to "help" — affiliate networks read coordinated clicking as invalid traffic and ban for it. Real people using the quiz for real is both safe and the only thing that works.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">The call we made</div>
+    <h2>No model. The clothes are the content.</h2>
+    <p class="lede">Two Runway rounds and roughly 64 credits produced a woman who still read about thirty, with waxy skin and no flyaways. It looked AI, and everyone in your audience would have known.</p>
+
+    <p>That was worth walking away from for two reasons. The persona was chosen for the <strong>style-over-40 wedge</strong> — an underserved, high-intent niche — and a face that reads thirty puts you back in the most crowded market there is. And your whole promise is <em>"this could be you."</em> A synthetic face quietly undercuts that at the exact moment the quiz asks for an email.</p>
+
+    <div class="gate">
+      <span class="tag">What replaces her</span>
+      <p><strong>Flat-lays and capsule grids</strong> — the neutral, labelled "one capsule / X ways" layouts that fill the Pinterest board you already said you liked. They cost nothing, they can't look AI because they're real product photos, they show the product actually doing its job, and they're the format Pinterest genuinely <em>saves</em>.</p>
+    </div>
+
+    <p>Elle survives as a <strong>voice</strong> — the warm big-sister tone in the captions. She just doesn't need a face.</p>
+
+    <h3>What's already built and waiting</h3>
+    <ul>
+      <li><strong>The capsule grid pin</strong> (<code>capsule-grid/grid.html</code>) — 2:3 Pinterest pin, 8 tiles, auto-swaps <code>p1.jpg</code>…<code>p8.jpg</code> the moment they exist</li>
+      <li><strong>The 7-slide carousel</strong> (<code>carousel.html</code>) — cover is now a flat-lay grid, the CTA slide a product strip. No model anywhere.</li>
+      <li>Both render through headless Chrome and fall back to labelled placeholders until the photos land</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="eyebrow">The one blocker</div>
+    <h2>Eight product photos</h2>
+    <p class="lede">About ten minutes of your time, and it unlocks every visual asset in this kit. Amazon requires product images come through SiteStripe, so this one genuinely can't be automated.</p>
+
+    <ol>
+      <li>Turn on <strong>SiteStripe</strong> — the grey bar at the top of Amazon when you're logged into Associates</li>
+      <li>Open each search below and pick a piece you'd actually recommend</li>
+      <li>SiteStripe → <strong>Text</strong> → copy the short link (it already carries your tag). Paste into a note.</li>
+      <li>Right-click the product photo → <strong>Save Image As</strong> → into <code>capsule-grid/</code></li>
+    </ol>
+
+    <div class="gate">
+      <span class="tag">Pick well</span>
+      <p>Choose products shot on a <strong>plain white background</strong> — they drop straight into the cream tiles and read editorial. Skip anything photographed on a model; it breaks the flat-lay look.</p>
+    </div>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Save as</th><th>Piece</th><th>Search</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>p1.jpg</code></td><td>Cream knit sweater</td><td>womens cream crewneck sweater</td></tr>
+          <tr><td><code>p2.jpg</code></td><td>Camel tailored trouser</td><td>womens camel tailored trousers</td></tr>
+          <tr><td><code>p3.jpg</code></td><td>White button-down</td><td>womens white button down shirt</td></tr>
+          <tr><td><code>p4.jpg</code></td><td>Straight-leg jean</td><td>womens straight leg jeans</td></tr>
+          <tr><td><code>p5.jpg</code></td><td>Camel wool coat</td><td>womens camel wool coat</td></tr>
+          <tr><td><code>p6.jpg</code></td><td>Brown leather tote</td><td>womens brown leather tote bag</td></tr>
+          <tr><td><code>p7.jpg</code></td><td>Leather loafer</td><td>womens leather loafers</td></tr>
+          <tr><td><code>p8.jpg</code></td><td>Gold hoop earrings</td><td>gold hoop earrings</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Drop them in and say the word — the grid and the carousel rebuild around them in one pass, and you're posting the same day.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Who she is</div>
+    <h2>Persona bible</h2>
+    <p class="lede">One consistent woman, or the brand doesn't cohere. Keep this identical across every render and every caption.</p>
+
+    <div class="scroller">
+      <table>
+        <tbody>
+          <tr><th>Who</th><td>Elle — but as a <strong>voice</strong>, not a face. She narrates; she is never pictured.</td></tr>
+          <tr><th>Voice</th><td>Big sister, not guru. Warm, direct, a little wry. She has been the woman standing in front of a full closet with nothing to wear.</td></tr>
+          <tr><th>Audience</th><td>Women 40+. "Style over 40" is high-intent, underserved, and far less saturated than general fashion. Write to a peer.</td></tr>
+          <tr><th>Look</th><td>Quiet-luxury neutrals. Cream, camel, ivory, soft browns. Gold accents. Nothing loud.</td></tr>
+          <tr><th>Promise</th><td>Fewer pieces, more outfits. The calm on the other side of closet chaos.</td></tr>
+          <tr><th>Never</th><td>Trend-chasing, hype, "obsessed!!", youth micro-trends, hard selling — and no AI-generated people.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">The visual formula</div>
+    <h2>What a post looks like</h2>
+    <p class="lede">Every asset is the same three ingredients: real product photos on cream, a serif title, and one gold rule. That consistency is what makes a feed look like a brand instead of a folder.</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Asset</th><th>Format</th><th>Where</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Capsule grid</td><td>2:3 pin · 8 tiles · "Shop →"</td><td>Pinterest (direct link)</td></tr>
+          <tr><td>Carousel</td><td>7 slides · 1080×1350</td><td>Instagram, Facebook</td></tr>
+          <tr><td>Outfit formula</td><td>Single slide · the "+" chain</td><td>All three, as a standalone</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The carousel already contains three outfit formulas — <strong>The Everyday</strong>, <strong>The Workday</strong>, <strong>The Layered</strong> — each a chain of pieces from the same eight. That's the "one capsule, X ways" idea, and it's the most saveable thing you own.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">What she posts</div>
+    <h2>Four content pillars</h2>
+    <p class="lede">Every post is one of these four. Rotate them. Don't invent a fifth until one of these proves itself.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="name">Closet chaos → capsule</div>
+        <div class="hook"><em>The transformation hook.</em> The emotional entry point. Everyone recognizes the full-closet-nothing-to-wear feeling — that recognition is the whole ad.</div>
+      </div>
+      <div class="pillar">
+        <div class="name">One capsule, five ways</div>
+        <div class="hook"><em>The save-worthy one.</em> Proves the product's core claim: fewer pieces, more outfits. This is the format that gets bookmarked and re-shared.</div>
+      </div>
+      <div class="pillar">
+        <div class="name">Shop it at every budget</div>
+        <div class="hook"><em>The differentiator.</em> Markets your budget-tier toggle directly. Same look at Value, Everyday, Elevated — nobody else is doing this.</div>
+      </div>
+      <div class="pillar">
+        <div class="name">The 3-piece outfit formula</div>
+        <div class="hook"><em>The teaching one.</em> Pure utility, no selling. Builds the authority that makes the other three land.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Day one</div>
+    <h2>Set up the accounts</h2>
+    <p class="lede">About twenty minutes. Same handle everywhere so people can actually find you.</p>
+
+    <h3>Handle</h3>
+    <p>Take the first available across Instagram and TikTok: <code>easeandaura</code> → <code>ease.and.aura</code> → <code>easeandaura.style</code>. Display name on all: <strong>Ease &amp; Aura</strong>.</p>
+
+    <h3>Link in bio</h3>
+    <p>Instagram and TikTok have no clickable links in posts — <strong>every click you ever get comes through the bio link.</strong> Use a per-channel UTM so you can tell what's working:</p>
+    <div class="copyblock">
+      <div class="copyhead">
+        <span>Bio links</span>
+        <button class="copybtn" type="button" data-copy>Copy</button>
+      </div>
+      <pre><code>Instagram → https://easeandaura.com/?utm_source=instagram&utm_medium=bio
+TikTok    → https://easeandaura.com/?utm_source=tiktok&utm_medium=bio
+Facebook  → https://easeandaura.com/?utm_source=facebook&utm_medium=bio</code></pre>
+    </div>
+    <p>Set TikTok to a <strong>Business account</strong> — otherwise the bio link field stays locked until 1,000 followers.</p>
+
+    <div class="copyblock">
+      <div class="copyhead">
+        <span>Instagram bio</span>
+        <button class="copybtn" type="button" data-copy>Copy</button>
+      </div>
+      <pre><code>Ease & Aura
+AI-curated capsule wardrobes 🤍
+Your personal style, sorted in 5 min
+Take the free quiz ↓</code></pre>
+    </div>
+
+    <div class="copyblock">
+      <div class="copyhead">
+        <span>TikTok bio (80 char limit)</span>
+        <button class="copybtn" type="button" data-copy>Copy</button>
+      </div>
+      <pre><code>AI capsule wardrobes ✨ Free style quiz in bio 🤍 neutral · easy · you</code></pre>
+    </div>
+
+    <ul class="checks">
+      <li>Grab the handle on Instagram + TikTok (Facebook Page already exists)</li>
+      <li>Instagram → Business/Creator. TikTok → Business.</li>
+      <li>Profile pic on all three + Facebook cover <em>(rebuild these once Elle v2 lands)</em></li>
+      <li>Paste bios and the UTM'd quiz links</li>
+      <li>Post and <strong>pin</strong> the launch post below on Facebook</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="eyebrow">Week one</div>
+    <h2>The launch posts</h2>
+    <p class="lede">Three posts, one per pillar. Facebook is the only one of the three with clickable links in-post — so put the URL in the copy there, and lean on the bio link everywhere else.</p>
+
+    <div class="copyblock">
+      <div class="copyhead">
+        <span>Post 1 · Hello — pin this one</span>
+        <button class="copybtn" type="button" data-copy>Copy</button>
+      </div>
+      <pre><code>Hi, I'm Elle. 👋
+
+I spent years with a closet full of clothes and nothing to wear. Turns out I didn't
+need more — I needed the right pieces that actually work together.
+
+That's the whole idea behind Ease & Aura: a personalized capsule wardrobe, built
+around your life, your colors, and your budget. No trends you'll regret. No overwhelm.
+Just a wardrobe that feels like you.
+
+Take the free 5-minute style quiz and I'll show you yours → easeandaura.com
+
+#capsulewardrobe #styleover40 #effortlessstyle #quietluxury</code></pre>
+    </div>
+
+    <div class="copyblock">
+      <div class="copyhead">
+        <span>Post 2 · Closet chaos → capsule</span>
+        <button class="copybtn" type="button" data-copy>Copy</button>
+      </div>
+      <pre><code>If getting dressed feels like a daily negotiation with your closet… you're not alone. 🙈
+
+The fix isn't a bigger wardrobe. It's a smaller, smarter one — a handful of pieces that
+mix, match, and carry you from Monday to date night without a second thought.
+
+Answer a few quick questions and I'll build your personalized capsule, free:
+→ easeandaura.com
+
+What's the one item you reach for every single week? Tell me below 👇
+
+#capsulewardrobe #wardroberefresh #styletips #minimalstyle</code></pre>
+    </div>
+
+    <div class="copyblock">
+      <div class="copyhead">
+        <span>Post 3 · Shop it at any budget</span>
+        <button class="copybtn" type="button" data-copy>Copy</button>
+      </div>
+      <pre><code>Here's what I love about a capsule: the pieces matter more than the price tags. 💛
+
+Your Ease & Aura capsule comes with a budget toggle — shop the exact same look at
+Value, Everyday, or Elevated. Same style, your spend. 💵✨💎
+
+Build yours free → easeandaura.com
+
+#budgetstyle #capsulewardrobe #smartshopping #styleonabudget</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">The quiet winner</div>
+    <h2>Pinterest</h2>
+    <p class="lede">Worth doing even though you deprioritized it — Pinterest is search-driven, needs no audience, and allows a direct link on every pin. It's the one channel where a click can happen on day one.</p>
+
+    <div class="copyblock">
+      <div class="copyhead">
+        <span>Pin title &amp; description</span>
+        <button class="copybtn" type="button" data-copy>Copy</button>
+      </div>
+      <pre><code>Title: The 5-Minute Capsule Wardrobe Quiz (Free)
+
+Description: Build a personalized capsule wardrobe around your colors, lifestyle
+and budget. Free style quiz — see your capsule in 5 minutes.
+#capsulewardrobe #styleover40 #outfitideas
+
+Link: https://easeandaura.com/?utm_source=pinterest&utm_medium=organic</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Thirty days</div>
+    <h2>What to expect — honestly</h2>
+    <p class="lede">The goal of month one is <strong>not money.</strong> It's to go live, learn what lands, and build the first audience. A cold-start first sale realistically arrives on day 45–90. That's normal. It is not failure.</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Do</th><th>Expect</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td>Accounts live, bios + link set. 3–4 posts, cross-posted to all three.</td>
+            <td>First views. A handful of followers. <strong>Zero sales.</strong></td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td>4 posts. Vary the hook every time. Watch which one moves.</td>
+            <td>Hundreds to a few thousand views. First link clicks trickle in.</td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td>Take the best performer and make three more <em>like it</em>. Email your first leads.</td>
+            <td>One post may pop. Tens of clicks. First quiz completions. A sale is a bonus.</td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td>4 posts, keep the winning format. Review the numbers.</td>
+            <td>Compounding reach. Real email list. Maybe a first sale.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gate">
+      <span class="tag">The one rule</span>
+      <p><strong>Make once, post to all three.</strong> Four posts a week for four weeks, with one that lands, beats a burst followed by silence. The algorithm rewards steady. One reel hitting can change everything — but only if you're still feeding it when it does.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Not delegable</div>
+    <h2>What only you can do</h2>
+    <p class="lede">Everything else in this kit is built and waiting. These four are the whole critical path.</p>
+    <ul class="checks">
+      <li class="done">Complete the Amazon tax interview — <em>done</em></li>
+      <li class="done">Fix the affiliate tag — <em>done, live</em></li>
+      <li class="done">Decide on the model — <em>done: no model</em></li>
+      <li><strong>Grab 8 product photos</strong> via SiteStripe → <code>capsule-grid/</code>. This is the whole critical path.</li>
+      <li><strong>Grab the handles</strong> on Instagram and TikTok before someone else does</li>
+    </ul>
+    <p>Everything else is built. Drop the eight photos in and say the word — the grid and carousel rebuild around them, and you post the same day.</p>
+  </section>
+
+  <div class="foot">
+    Ease &amp; Aura · The Elle Kit · assembled 12 July 2026<br>
+    Source files in <code>~/ease-and-aura/elle-assets/</code>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var pre = btn.closest(".copyblock").querySelector("pre");
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function () {
+        var original = btn.textContent;
+        btn.textContent = "Copied";
+        btn.classList.add("done");
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove("done");
+        }, 1600);
+      });
+    });
+  });
+</script>

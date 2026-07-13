@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1000px;height:1500px;overflow:hidden;font-family:'Jost',sans-serif;background:#FBF8F4}
+.pin{width:1000px;height:1500px;padding:64px 60px 54px;display:flex;flex-direction:column;background:linear-gradient(160deg,#FBF8F4 0%,#F4EEE5 100%)}
+.eyebrow{font-size:15px;letter-spacing:0.34em;text-transform:uppercase;color:#C9A96E;text-align:center}
+.title{font-family:'Cormorant Garamond',serif;font-size:62px;font-weight:300;letter-spacing:0.04em;color:#3A3530;text-align:center;line-height:1.05;margin-top:12px}
+.sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:#7A6A5A;text-align:center;margin-top:8px}
+.rule{width:60px;height:2px;background:#C9A96E;margin:22px auto 30px}
+.grid{flex:1;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,1fr);gap:18px}
+.tile{background:#fff;border:1px solid #EAE2D8;border-radius:6px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.imgwrap{flex:1;display:flex;align-items:center;justify-content:center;background:#F7F2EA;padding:18px}
+.imgwrap img{max-width:100%;max-height:100%;object-fit:contain}
+.ph{flex:1;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,#F4EEE5,#F4EEE5 12px,#EFE7DB 12px,#EFE7DB 24px);color:#B7A48C;font-size:13px;letter-spacing:0.22em;text-transform:uppercase}
+.label{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-top:1px solid #F0EBE3}
+.name{font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:#3A3530;font-weight:400}
+.shop{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C9A96E}
+.foot{margin-top:26px;text-align:center}
+.cta{font-family:'Cormorant Garamond',serif;font-size:30px;color:#3A3530}
+.url{margin-top:8px;font-size:14px;letter-spacing:0.26em;text-transform:uppercase;color:#C9A96E}
+</style></head><body>
+<div class="pin">
+  <div class="eyebrow">Ease &amp; Aura</div>
+  <div class="title">The Neutral Capsule</div>
+  <div class="sub">8 pieces · endless outfits</div>
+  <div class="rule"></div>
+  <div class="grid" id="g"></div>
+  <div class="foot">
+    <div class="cta">Get your capsule in 5 minutes</div>
+    <div class="url">Free style quiz · easeandaura.com</div>
+  </div>
+</div>
+<script>
+const items=[["Cream Knit","p1.jpg"],["Camel Trouser","p2.jpg"],["White Shirt","p3.jpg"],["Straight Jean","p4.jpg"],["Camel Coat","p5.jpg"],["Leather Tote","p6.jpg"],["Leather Loafer","p7.jpg"],["Gold Hoops","p8.jpg"]];
+const g=document.getElementById('g');
+items.forEach(([n,src])=>{
+  const t=document.createElement('div');t.className='tile';
+  // real image if present (flat-lay on cream); falls back to labeled placeholder if missing
+  t.innerHTML=`<div class="imgwrap"><img src="${src}" onerror="this.parentNode.outerHTML='<div class=&quot;ph&quot;>${n}</div>'"></div><div class="label"><span class="name">${n}</span><span class="shop">Shop →</span></div>`;
+  g.appendChild(t);
+});
+</script>
+</body></html>
