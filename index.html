@@ -1,52 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ease & Aura — AI Capsule Wardrobe</title>
-  <!-- Fallback redirect if JavaScript is disabled -->
-  <meta http-equiv="refresh" content="0; url=/app.html" />
-  <link rel="canonical" href="https://easeandaura.com/app.html" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; background: #F8F4EF; }
-    body {
-      font-family: 'Jost', sans-serif;
-      color: #3A3530;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.18em;
-      margin-bottom: 1.25rem;
-    }
-    .logo em { color: #C9A96E; font-style: italic; }
-    .spinner {
-      width: 32px; height: 32px; margin: 0 auto 1rem;
-      border: 2px solid #E5DDD3; border-top-color: #C9A96E;
-      border-radius: 50%; animation: spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .note { font-size: 0.72rem; letter-spacing: 0.12em; color: #9A8878; line-height: 1.8; }
-    a { color: #C9A96E; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ease &amp; Aura — Build Your Capsule Wardrobe in 5 Minutes</title>
+<meta name="description" content="A free AI style quiz that builds a personalized capsule wardrobe for your body shape, your aesthetic, and the life you actually dress for. Plus honest buying guides for the pieces worth owning." />
+<link rel="canonical" href="https://easeandaura.com/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ease & Aura — Build Your Capsule Wardrobe in 5 Minutes" />
+<meta property="og:description" content="A free AI style quiz that builds a personalized capsule wardrobe — for your body shape, your aesthetic, and the life you actually dress for." />
+<meta property="og:url" content="https://easeandaura.com/" />
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Ease & Aura",
+  "url": "https://easeandaura.com/",
+  "description": "A free AI style quiz that builds a personalized capsule wardrobe, plus honest buying guides for wardrobe essentials."
+}
+</script>
+
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Jost',sans-serif;background:#FBF8F4;color:#3A3530;line-height:1.8;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:860px;margin:0 auto;padding:0 1.5rem}
+
+  nav{display:flex;justify-content:center;padding:2rem 1.5rem}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:0.28em;text-decoration:none}
+  .logo em{color:#C9A96E;font-style:italic}
+
+  /* HERO */
+  .hero{text-align:center;padding:3.5rem 0 4rem}
+  .eyebrow{font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#C9A96E;margin-bottom:1.1rem}
+  h1{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;line-height:1.1;margin-bottom:1.2rem;letter-spacing:0.01em}
+  h1 em{font-style:italic;color:#C9A96E}
+  .standfirst{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:#7A6A5A;line-height:1.6;max-width:34rem;margin:0 auto 2.25rem}
+  .btn{display:inline-block;background:#3A3530;color:#FAF7F3;text-decoration:none;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:1.05rem 2.5rem;border-radius:6px;transition:background .18s ease}
+  .btn:hover{background:#C9A96E}
+  .btn-note{display:block;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#9A8878;margin-top:1rem}
+
+  .hero-img{margin-top:3.25rem;border-radius:10px;overflow:hidden;border:1px solid #EAE2D8;aspect-ratio:16/7}
+  .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* SECTIONS */
+  section{padding:3.5rem 0;border-top:1px solid #EAE2D8}
+  h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;text-align:center;margin-bottom:0.6rem;line-height:1.25}
+  .sub{text-align:center;color:#7A6A5A;font-size:0.9rem;font-weight:300;max-width:34rem;margin:0 auto 2.5rem}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+  .step{background:#fff;border:1px solid #E6DDD0;border-radius:8px;padding:1.6rem 1.4rem;text-align:center}
+  .step-n{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#C9A96E;margin-bottom:0.4rem}
+  .step-t{font-size:0.9rem;font-weight:500;margin-bottom:0.35rem}
+  .step-d{font-size:0.82rem;color:#7A6A5A;font-weight:300;line-height:1.7}
+
+  .guides{display:grid;gap:0.9rem}
+  .guide{display:block;background:#fff;border:1px solid #E6DDD0;border-radius:8px;padding:1.4rem 1.6rem;text-decoration:none;transition:border-color .18s ease,transform .18s ease}
+  .guide:hover{border-color:#C9A96E;transform:translateY(-2px)}
+  .guide-k{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#C9A96E;margin-bottom:0.35rem}
+  .guide-t{font-family:'Cormorant Garamond',serif;font-size:1.35rem;margin-bottom:0.3rem}
+  .guide-d{font-size:0.84rem;color:#7A6A5A;font-weight:300;line-height:1.7}
+
+  .final{text-align:center}
+  footer{text-align:center;padding:3rem 1.5rem 2.5rem;border-top:1px solid #EAE2D8}
+  .foot-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.24em;color:#3A3530}
+  .foot-logo em{color:#C9A96E;font-style:italic}
+  .foot-tag{font-size:0.72rem;letter-spacing:0.14em;color:#9A8878;margin-top:0.5rem}
+  .foot-aff{font-size:0.7rem;color:#B0A192;font-weight:300;line-height:1.8;max-width:36rem;margin:1.5rem auto 0}
+
+  @media(max-width:680px){
+    h1{font-size:2.3rem}
+    .steps{grid-template-columns:1fr}
+    .hero{padding:2rem 0 3rem}
+    .hero-img{aspect-ratio:4/3}
+  }
+</style>
 </head>
 <body>
-  <div>
-    <div class="logo">EASE <em>&amp;</em> AURA</div>
-    <div class="spinner"></div>
-    <p class="note">Taking you to your style quiz&hellip;<br />
-      <a href="/app.html">Continue &rarr;</a> if you&rsquo;re not redirected.</p>
+
+<nav><a class="logo" href="/">EASE <em>&amp;</em> AURA</a></nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Free AI Style Quiz</div>
+    <h1>Build a wardrobe that <em>works</em>.</h1>
+    <p class="standfirst">Answer a few questions and get a personalized capsule wardrobe — built for your body shape, your aesthetic, and the life you actually dress for.</p>
+    <a class="btn" href="/app.html">Build my capsule &rarr;</a>
+    <span class="btn-note">Free · Takes about 5 minutes</span>
+
+    <div class="hero-img">
+      <img src="/assets/hero-rail.jpg" alt="A neutral capsule wardrobe on a rail" />
+    </div>
   </div>
-  <script>
-    // Instant client-side redirect (replace() keeps it out of history).
-    window.location.replace('/app.html');
-  </script>
+
+  <section>
+    <h2>Fewer pieces, chosen well</h2>
+    <p class="sub">A capsule isn't about owning less for its own sake. It's about owning pieces that recombine — so getting dressed stops being a decision.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">I</div>
+        <div class="step-t">Take the quiz</div>
+        <div class="step-d">A few questions about your shape, your colors, and where you actually go.</div>
+      </div>
+      <div class="step">
+        <div class="step-n">II</div>
+        <div class="step-t">Get your capsule</div>
+        <div class="step-d">A personalized set of essentials, with the pieces chosen to work together.</div>
+      </div>
+      <div class="step">
+        <div class="step-n">III</div>
+        <div class="step-t">Shop your budget</div>
+        <div class="step-d">Every piece, shoppable at three price points — from everyday to investment.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Buying guides</h2>
+    <p class="sub">Honest guidance on the pieces worth owning — how to judge quality, and what to buy at every budget.</p>
+    <div class="guides">
+      <a class="guide" href="/guides/best-cream-sweater">
+        <div class="guide-k">Buying Guide</div>
+        <div class="guide-t">How to Choose the Best Cream Sweater</div>
+        <div class="guide-d">The hardest-working piece in a capsule — and the easiest to get wrong. How to read fiber, gauge, and construction in thirty seconds.</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Ready to build yours?</h2>
+    <p class="sub">The quiz is free, and you'll have your capsule in about five minutes.</p>
+    <a class="btn" href="/app.html">Build my capsule &rarr;</a>
+  </section>
+
+</div>
+
+<footer>
+  <div class="foot-logo">EASE <em>&amp;</em> AURA</div>
+  <div class="foot-tag">Dress with intention · Live with ease</div>
+  <p class="foot-aff">Ease &amp; Aura participates in the Amazon Associates Program and other affiliate programs. We earn from qualifying purchases at no additional cost to you.</p>
+</footer>
+
 </body>
 </html>
