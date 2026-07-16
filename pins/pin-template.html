@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1000px;height:1500px}
+  body{
+    font-family:'Jost',sans-serif;
+    background:#FBF8F4;
+    color:#3A3530;
+    width:1000px;height:1500px;
+    display:flex;flex-direction:column;
+    position:relative;overflow:hidden;
+  }
+  /* thin frame */
+  .frame{position:absolute;inset:44px;border:1px solid #DED3C4;pointer-events:none}
+
+  .top{padding:120px 110px 0;text-align:center}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:34px;letter-spacing:14px;color:#3A3530}
+  .brand em{color:#C9A96E;font-style:italic}
+
+  .kicker{font-size:22px;letter-spacing:8px;text-transform:uppercase;color:#C9A96E;margin-top:64px}
+
+  .headline{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size:104px;
+    line-height:1.04;
+    margin-top:40px;
+    color:#3A3530;
+  }
+  .headline em{font-style:italic;color:#C9A96E}
+
+  .sub{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:40px;
+    line-height:1.4;
+    color:#7A6A5A;
+    margin-top:44px;
+    padding:0 40px;
+  }
+
+  .rule{width:90px;height:2px;background:#C9A96E;margin:64px auto 0}
+
+  .spacer{flex:1}
+
+  .bottom{padding:0 110px 130px;text-align:center}
+  .points{list-style:none;display:inline-block;text-align:left}
+  .points li{
+    font-size:30px;font-weight:300;color:#5A4F44;
+    line-height:1.5;margin:18px 0;padding-left:46px;position:relative;
+  }
+  .points li::before{
+    content:"";position:absolute;left:0;top:14px;
+    width:14px;height:14px;border-radius:50%;
+    border:2px solid #C9A96E;
+  }
+
+  .foot{
+    font-size:24px;letter-spacing:5px;text-transform:uppercase;
+    color:#9A8878;margin-top:70px;
+  }
+  .foot strong{color:#3A3530;font-weight:500}
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="top">
+    <div class="brand">EASE <em>&amp;</em> AURA</div>
+    <div class="kicker">__KICKER__</div>
+    <h1 class="headline">__HEADLINE__</h1>
+    <p class="sub">__SUB__</p>
+    <div class="rule"></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="bottom">
+    <ul class="points">__POINTS__</ul>
+    <div class="foot">__FOOT__</div>
+  </div>
+</body>
+</html>
