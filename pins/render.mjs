@@ -156,6 +156,58 @@ const pins = [
     points: ['Personalized to your body & aesthetic', 'Shoppable at every budget', 'Takes about five minutes'],
     foot: 'Take the quiz · <strong>easeandaura.com</strong>',
   },
+
+  // ── Batch 3 (2026-07-22): pins for the two new pillar guides — the evergreen
+  // checklist hub and the seasonal fall capsule. Head-keyword search intent
+  // ("capsule wardrobe checklist", "fall capsule wardrobe"), high pin volume.
+  {
+    file: 'pin-checklist.png',
+    kicker: 'The Complete Checklist',
+    headline: 'The Capsule Wardrobe <em>Checklist</em>',
+    sub: 'Twelve pieces that recombine into a month of outfits.',
+    points: ['The 12 essentials, chosen well', 'How to judge quality on each', 'What to buy at every budget'],
+    foot: 'Free guide · <strong>easeandaura.com</strong>',
+  },
+  {
+    file: 'pin-12-essentials.png',
+    kicker: 'Capsule Wardrobe',
+    headline: '12 Pieces, <em>30 Outfits</em>',
+    sub: 'The whole trick is a shared palette — then everything matches.',
+    points: ['The neutrals that recombine', 'Why fewer pieces means more outfits', 'The one rule that makes it work'],
+    foot: 'Free checklist · <strong>easeandaura.com</strong>',
+  },
+  {
+    file: 'pin-capsule-palette.png',
+    kicker: 'Style Foundations',
+    headline: 'Pick a <em>Palette</em>, Not Pieces',
+    sub: 'Two or three neutrals plus one color you love — that’s the whole method.',
+    points: ['Why a palette makes everything match', 'The neutrals that never date', 'Build a month of outfits from 12 pieces'],
+    foot: 'Free guide · <strong>easeandaura.com</strong>',
+  },
+  {
+    file: 'pin-fall-capsule.png',
+    kicker: 'Seasonal Capsule',
+    headline: 'The <em>Fall</em> Capsule Wardrobe',
+    sub: 'Ten pieces in warm neutrals — a month of autumn outfits.',
+    points: ['The coat, knits & denim that carry fall', 'How to judge each piece', 'What to buy at every budget'],
+    foot: 'Free guide · <strong>easeandaura.com</strong>',
+  },
+  {
+    file: 'pin-fall-10-pieces.png',
+    kicker: 'Fall Wardrobe',
+    headline: '<em>10 Pieces</em> for Fall',
+    sub: 'Camel, cream & chocolate — everything layers with everything else.',
+    points: ['The warm-neutral fall palette', 'Ten pieces, five easy outfits', 'Nothing that fights anything else'],
+    foot: 'Free guide · <strong>easeandaura.com</strong>',
+  },
+  {
+    file: 'pin-fall-outfits.png',
+    kicker: 'Autumn Outfits',
+    headline: '5 <em>Fall Outfits</em>, One Rail',
+    sub: 'Straight off a ten-piece capsule — before you even start swapping.',
+    points: ['The weekday, the weekend, the easy one', 'Every piece in a shared palette', 'Add boots and the coat — done'],
+    foot: 'Free guide · <strong>easeandaura.com</strong>',
+  },
 ];
 
 // Pass filenames as args to re-render only those pins; no args renders all.
